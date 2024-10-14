@@ -404,6 +404,28 @@
 </body>
 <script src="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.js"></script>
 <script>
+  document.querySelector("form").addEventListener("submit", function(e) {
+  e.preventDefault(); // Prevent default form submission
+  fetch("https://formspree.io/f/meoqqgoo", {
+    method: "POST",
+    body: new FormData(this),
+    headers: {
+      'Accept': 'application/json'
+    }
+  }).then(response => {
+    if (response.ok) {
+      alert("Form submitted successfully!");
+    } else {
+      alert("Error with form submission!");
+    }
+  }).catch(error => {
+    alert("There was an error with your submission.");
+    console.error("Formspree Error:", error);
+  });
+});
+
+</script>
+<script>
   AOS.init({
     duration: 1200,
     once: true,
